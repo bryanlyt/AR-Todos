@@ -44,7 +44,7 @@ def todo_execute
     when "list"
       display_tasks_list
     when "add"
-      display_tasks_added ARGV[1..-1].join('; ')
+      display_tasks_added ARGV[1..-1].join(' ')
     when "delete"
       display_tasks_deleted ARGV[1]
     when "complete"
