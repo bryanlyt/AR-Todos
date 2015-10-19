@@ -1,11 +1,11 @@
 require_relative '../../config/application'
-require_relative '../controllers/task_controller.rb'
+require_relative '../controllers/tasks_controller.rb'
 
 def display_menu  # display commands of what user can type in
   puts "#" * 50
   puts "Here are your actions:"
   puts "ruby task_view.rb list (To list all tasks)"
-  puts "ruby task_view.rb add TASK (To add task | e.g. ruby todo.rb Finish homework)"
+  puts "ruby task_view.rb add TASK (To add task | e.g. ruby todo.rb add Finish homework)"
   puts "ruby task_view.rb delete TASK_NUMBER (To delete a task | e.g. ruby todo.rb delete 1)"
   puts "ruby task_view.rb complete TASK_NUMBER (To complete a task | e.g. ruby todo.rb complete 1)"
 end
@@ -24,15 +24,15 @@ def display_tasks_list  # display condition for task list with / without tasks a
 end
 
 def display_tasks_added(sentence)  
-  puts TasksController.add sentence
+  TasksController.add(sentence)
 end
 
 def display_tasks_deleted(task_id)
-  puts TasksController.delete task_id.to_i
+  puts TasksController.delete(task_id.to_i)
 end
 
 def display_tasks_completed(task_id)
-  puts TasksController.complete task_id.to_i
+  puts TasksController.complete(task_id.to_i)
 end
 
 
@@ -44,7 +44,7 @@ def todo_execute
     when "list"
       display_tasks_list
     when "add"
-      display_tasks_added ARGV[1..-1].join(' ')
+      display_tasks_added(ARGV[1..-1].join(' '))
     when "delete"
       display_tasks_deleted ARGV[1]
     when "complete"
